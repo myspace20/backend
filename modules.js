@@ -23,10 +23,7 @@ cpus.forEach(cpu=>{
     cpusData.push({model:cpu.model, speed:cpu.speed})
 })
 
-//File system
 
-
-// console.log(people)
 
 module.exports = {
     people,
