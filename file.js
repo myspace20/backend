@@ -27,8 +27,6 @@ if(!existsSync('./assets')){
         }
         console.log("Successfully Created")
     })
-}else{
-    throw new Error("Folder already exists")
 }
 
 if(!existsSync('sample.txt')){
@@ -55,5 +53,9 @@ if(existsSync('sample.txt')){
 
 writeToFile('README.md', data)
 // console.log(readMyfile('./text.txt'))
+
+
+
+
 
 
