@@ -5,9 +5,9 @@ const writeStream = createWriteStream('sample.txt')
 
 
 
-// readStream.on('data', (chunk)=>{
-//     console.log(chunk)
-//     writeStream.write(chunk)
-// })
+readStream.on('data', (chunk)=>{
+    console.log(chunk)
+    writeStream.write(chunk)
+})
 
 readStream.pipe(writeStream)
