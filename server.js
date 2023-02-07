@@ -1,19 +1,22 @@
-const http = require('http')
+const { createServer } = require('http')
 const { readFile } = require('fs')
 
-const server = http.createServer((req,res)=>{
+//creating server
+const server = createServer((req,res)=>{
    res.setHeader("Content-Type", "text/html")
 
-   let path = './views/'
+   //setting the up the file directory path
+   let filePath = './views/'
 
+   //using conditionals to render pages based on request url
    switch(req.url){
 
     case '/':
-        path += "index.html"
+        filePath += "index.html"
         res.statusCode = 200;
         break;
     case '/about':
-        path += "about.html"
+        filePath += "about.html"
         res.statusCode = 200;
         break;
     case '/about-me':
@@ -22,12 +25,13 @@ const server = http.createServer((req,res)=>{
         res.end()
         break;
     default:
-        path += '404.html'
+        filePath += '404.html'
         res.statusCode = 404;
         break; 
    }
 
-   readFile(path, (err, data)=>{
+   //Reading html document based on file path
+   readFile(filePath, (err, data)=>{
     if(err){
         console.log(err)
         res.end()
@@ -38,7 +42,7 @@ const server = http.createServer((req,res)=>{
    
 })
 
-
+//listening to server on port 3000
 server.listen(3000, 'localhost', ()=>{
     console.log("server is running")
 })
