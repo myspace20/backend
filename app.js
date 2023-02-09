@@ -4,24 +4,31 @@ const express = require('express')
 //creating express instance
 const app = express ()
 
+app.set('view engine', 'ejs')
+
 //home route
-app.get('/', (req, res, next)=>{
-    res.sendFile('./views/index.html', {root: __dirname})
+app.get('/', (req, res)=>{
+    const blogs = [
+        {title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+        {title: 'Mario finds stars', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+        {title: 'How to defeat bowser', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+      ];
+    res.render('index', { title: 'Home', blogs})
 })
 
 //about route
 app.get('/about',(req, res)=>{
-    res.sendFile('./views/about.html', {root: __dirname})
+    res.render('about', { title: 'About'})
 })
 
 //about route redirect
 app.get('/about-us', (req, res)=>{
-    res.redirect('/about')
+    res.render('about')
 })
 
 //404 middleware
 app.use((req, res)=>{
-    res.status(404).sendFile('./views/404.html', {root:__dirname})
+    res.status(404).render('404',{ title: '404'} )
 })
 
 
